@@ -37,69 +37,8 @@ async function main(config: Configuration): Promise<void> {
         )
       : undefined;
   const initializedMs = performance.now() - started;
-  const decoder = spawn(
-    config.ffmpeg,
-    [
-      "-nostdin",
-      "-v",
-      "error",
-      "-threads",
-      String(config.threads),
-      "-protocol_whitelist",
-      "file,pipe",
-      "-format_whitelist",
-      mediaFormats,
-      "-i",
-      config.input,
-      "-map",
-      `0:${config.streamIndex}`,
-      "-vn",
-      "-sn",
-      "-dn",
-      "-ar",
-      String(config.sampleRate),
-      "-ac",
-      String(config.channels),
-      "-f",
-      "f32le",
-      "-acodec",
-      "pcm_f32le",
-      "pipe:1",
-    ],
-    {
-      shell: false,
-      windowsHide: true,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: { ...process.env, LC_ALL: "C" },
-    },
-  );
-  let stderr = "";
-  decoder.stderr.on("data", (chunk: Buffer) => {
-    stderr = (stderr + chunk.toString()).slice(-8192);
-  });
-  const closed = new Promise<void>((resolve, reject) => {
-    decoder.once("error", (e) =>
-      reject(
-        new AuditError(
-          "DEPENDENCY_MISSING",
-          "Could not start the audio decoder.",
-          { cause: e },
-        ),
-      ),
-    );
-    decoder.once("close", (code) =>
-      code === 0
-        ? resolve()
-        : reject(
-            new AuditError(
-              "DECODE_FAILED",
-              "The input could not be decoded completely.",
-            ),
-          ),
-    );
-  });
-  void closed.catch(() => {});
   let handle;
+  let stopDecoder: (() => Promise<void>) | undefined;
   let pending = Buffer.alloc(0),
     decodedFrames = 0,
     writtenFrames = 0;
@@ -109,7 +48,75 @@ async function main(config: Configuration): Promise<void> {
   let lastProgress = Number.NEGATIVE_INFINITY;
   const blockBytes = FRAME_SIZE * config.channels * 4;
   try {
+    // Open the output before starting a fast decoder. Node drains a child's
+    // unread stdout on exit, so an awaited open after spawn can lose short clips.
     handle = await open(config.output, "wx", 0o600);
+    const decoder = spawn(
+      config.ffmpeg,
+      [
+        "-nostdin",
+        "-v",
+        "error",
+        "-threads",
+        String(config.threads),
+        "-protocol_whitelist",
+        "file,pipe",
+        "-format_whitelist",
+        mediaFormats,
+        "-i",
+        config.input,
+        "-map",
+        `0:${config.streamIndex}`,
+        "-vn",
+        "-sn",
+        "-dn",
+        "-ar",
+        String(config.sampleRate),
+        "-ac",
+        String(config.channels),
+        "-f",
+        "f32le",
+        "-acodec",
+        "pcm_f32le",
+        "pipe:1",
+      ],
+      {
+        shell: false,
+        windowsHide: true,
+        stdio: ["ignore", "pipe", "pipe"],
+        env: { ...process.env, LC_ALL: "C" },
+      },
+    );
+    let stderr = "";
+    decoder.stderr.on("data", (chunk: Buffer) => {
+      stderr = (stderr + chunk.toString()).slice(-8192);
+    });
+    const closed = new Promise<void>((resolve, reject) => {
+      decoder.once("error", (e) =>
+        reject(
+          new AuditError(
+            "DEPENDENCY_MISSING",
+            "Could not start the audio decoder.",
+            { cause: e },
+          ),
+        ),
+      );
+      decoder.once("close", (code) =>
+        code === 0
+          ? resolve()
+          : reject(
+              new AuditError(
+                "DECODE_FAILED",
+                "The input could not be decoded completely.",
+              ),
+            ),
+      );
+    });
+    void closed.catch(() => {});
+    stopDecoder = async () => {
+      decoder.kill("SIGKILL");
+      await closed.catch(() => {});
+    };
     const write = async (
       channels: Float32Array[],
       count: number,
@@ -253,8 +260,7 @@ async function main(config: Configuration): Promise<void> {
       delayCompensatedSamples: engine ? FRAME_SIZE * MODEL_DELAY_FRAMES : 0,
     });
   } finally {
-    decoder.kill("SIGKILL");
-    await closed.catch(() => {});
+    await stopDecoder?.();
     await handle?.close();
     await engine?.close();
   }

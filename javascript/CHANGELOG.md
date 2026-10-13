@@ -5,6 +5,8 @@
 - Preserve staged output bytes while opening a writable handle for Windows file synchronization before atomic publication.
 - Emit the first processed-frame progress event even when a short recording finishes inside the update interval, allowing progress-triggered cancellation on fast hosts.
 - Add a one-sample cancellation regression for denoising and conversion that verifies existing destinations and scratch cleanup.
+- Open scratch storage before starting the decoder so a fast child cannot exit and drain unread output during a slow filesystem operation; exercise the race with deliberately delayed file opens.
+- Escape generated TypeScript import paths correctly on Windows.
 
 ## Public release preparation — 2026-10-13
 

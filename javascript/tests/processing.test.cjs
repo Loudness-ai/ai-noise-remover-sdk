@@ -62,6 +62,48 @@ test("short final frames, including sub-frame clips, are never truncated", async
     assert.equal(result.analysis.frames, frames);
   }
 });
+test("a slow scratch open cannot discard a fast decoder's complete output", async () => {
+  for (const frames of [1, 513]) {
+    const source = await writeWav(output(`slow-open-${frames}.wav`), {
+      frames,
+    });
+    const raw = output(`slow-open-${frames}.f32`);
+    const hook = output(`slow-open-${frames}.cjs`);
+    await fs.writeFile(
+      hook,
+      `const fs = require('node:fs/promises'); const original = fs.open;
+fs.open = async (...args) => {
+  if (args[0] === ${JSON.stringify(raw)}) await new Promise(resolve => setTimeout(resolve, 500));
+  return original(...args);
+};\n`,
+    );
+    const decoded = await run(process.execPath, [
+      "--require",
+      hook,
+      path.resolve("dist/cjs/processing-worker.js"),
+      JSON.stringify({
+        input: source,
+        output: raw,
+        ffmpeg: "ffmpeg",
+        streamIndex: 0,
+        channels: 1,
+        sampleRate: 48000,
+        threads: 1,
+        maxDuration: 10,
+        maxTempBytes: 1048576,
+        declaredDuration: frames / 48000,
+        neural: false,
+        strength: 0,
+      }),
+    ]);
+    const events = decoded.stdout.toString().trim().split("\n").map(JSON.parse);
+    assert.equal(
+      events.find((event) => event.kind === "worker-result").frames,
+      frames,
+    );
+    assert.equal((await fs.stat(raw)).size, frames * 4);
+  }
+});
 test("stereo has independent channel state and original rate is retained", async () => {
   const file = await writeWav(output("stereo.wav"), {
     sampleRate: 44100,
