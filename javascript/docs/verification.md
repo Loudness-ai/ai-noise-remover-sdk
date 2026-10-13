@@ -1,6 +1,6 @@
 # Verification ledger
 
-Executed 13 October 2026 (Asia/Karachi). Local release candidate; no public registry/repository/Space publication is implied.
+Initial local checks executed 13 October 2026 (Asia/Karachi). The public source repository is now [Loudness.ai Audio Kit](https://github.com/secretheart49/loudness-audio-kit). Current platform-matrix results and installed-package checks are recorded in [GitHub Actions](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml); the table below preserves the initial local measurements. Registry and Space publication are separate.
 
 ## Executed platform checks
 
@@ -16,7 +16,7 @@ Executed 13 October 2026 (Asia/Karachi). Local release candidate; no public regi
 
 Browser plugin not available. Acquisition of the user's regular Chrome through CUA failed with a request-header-policy loading error; isolated Playwright was used without changing the user's tabs. Current app console errors/warnings: 0. Initial missing favicon 404 was corrected. Screenshots use viewports because this headless full-page compositor produced repeated stitched bands; DOM had one header.
 
-Native Windows has not been executed. CI includes Node 22/24 on Linux/macOS/Windows, but configured jobs are not execution receipts. The Windows RSS sampler is unavailable and its process-tree behavior remains a platform verification boundary.
+Native Windows was not executed during the initial local checks. Public CI exercises Node 22/24 on Linux/macOS/Windows, including actual inference, export, cancellation, installed-package and TypeScript consumers. Follow the completed run result rather than treating the configured matrix as proof. The Windows RSS sampler is unavailable.
 
 ## Actual speech output and reference checks
 
@@ -39,7 +39,11 @@ Runtime and demo npm audits report 0 known vulnerabilities at verification time.
 
 ## Boundaries
 
-The exact exported model release and initial-state arrays are now verified; the adopted MIT interpretation and remaining original training/author-confirmation limits are documented in provenance.md. Registry publication is recorded separately in its dated receipt. Native Windows execution remains unverified. Physical-phone recording, full ITU certification and a representative speech-quality corpus are not asserted. The protected source inventory detected one unrelated shared website runtime change; it was left intact and not attributed to this isolated kit implementation.
+The exact exported model release and initial-state arrays are now verified; the adopted MIT interpretation and remaining original training/author-confirmation limits are documented in provenance.md. Registry publication is recorded separately in its dated receipt. Physical-phone recording, full ITU certification and a representative speech-quality corpus are not asserted. The protected source inventory detected one unrelated shared website runtime change; it was left intact and not attributed to this isolated kit implementation.
+
+## Initial public CI corrections — 13 October 2026
+
+The first public run exposed a Windows file-sync error: a read-only staged-output handle could not be flushed. The corrected handle uses read/write access without truncating the verified audio. Fast Linux Node 24 processing also exposed a missing first progress event for clips finishing within the update interval. The first processed frame now always reports its phase. A one-sample regression cancels both denoising and conversion while preserving an existing destination and leaving no scratch files. All 93 tests pass locally; the complete platform matrix and package consumers are rerun in public CI.
 
 ## npm publication preparation — 13 October 2026
 

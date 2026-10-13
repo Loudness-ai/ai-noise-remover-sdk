@@ -2,9 +2,23 @@
 
 Local speech noise removal, audio enhancement, loudness normalization and format export for Node.js developers. It also measures recordings, validates delivery settings, compares outputs and benchmarks processors.
 
-**The kit produces processed audio on your own computer or server.** It needs no Loudness.ai account, API key, paid endpoint or network connection during processing. CPU inference, decoder and encoder run locally. The web demo uses the same library on the machine hosting that demo.
+**Runs locally on CPU. No GPU or CUDA installation is required.** The kit produces processed audio on your own computer or server, with no Loudness.ai account, API key, paid endpoint or network connection during processing. The web demo uses the same library on the machine hosting that demo.
 
-## Install and enhance a recording
+[![PyPI version](https://img.shields.io/pypi/v/loudness-audio-kit?label=Python%20edition)](https://pypi.org/project/loudness-audio-kit/)
+[![Verify Audio Kit](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml)
+
+## Build from GitHub
+
+```sh
+git clone https://github.com/secretheart49/loudness-audio-kit.git
+cd loudness-audio-kit/javascript
+npm ci --ignore-scripts
+npm run build
+node dist/cjs/cli.js processing-doctor
+node dist/cjs/cli.js enhance recording.wav --output enhanced.wav --progress
+```
+
+## Package installation
 
 Requirements: Node.js 22 or 24 and a local FFmpeg/FFprobe installation. FFmpeg must provide `ebur128`, `loudnorm`, `highpass`, `acompressor`, and the codecs you select. The pinned CPU speech assets are included in the package; no model is downloaded at runtime.
 

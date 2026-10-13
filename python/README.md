@@ -2,7 +2,10 @@
 
 Remove noise, enhance speech, normalize loudness, convert audio and measure the result locally. This is a native Python SDK and command-line tool built from the existing Loudness.ai Audio Kit. Audio stays on the computer or server running it. Processing requires neither Node.js nor an API key nor a Loudness.ai server.
 
-The package includes the same pinned CPU speech engine as the JavaScript edition. It processes the complete recording in small frames, preserves channel independence and verifies the exported file before publishing it. It also includes bounded scheduling, cancellation cleanup, configurable resource limits, measurements, policy checks, comparisons and offline reports.
+**Runs locally on CPU. No GPU, CUDA installation or Node.js is required.** The package includes the same pinned speech engine as the JavaScript edition. It processes the complete recording in small frames, preserves channel independence and verifies the exported file before publishing it. It also includes bounded scheduling, cancellation cleanup, configurable resource limits, measurements, policy checks, comparisons and offline reports.
+
+[![PyPI version](https://img.shields.io/pypi/v/loudness-audio-kit)](https://pypi.org/project/loudness-audio-kit/)
+[![Python versions](https://img.shields.io/pypi/pyversions/loudness-audio-kit)](https://pypi.org/project/loudness-audio-kit/)
 
 ## Install
 
