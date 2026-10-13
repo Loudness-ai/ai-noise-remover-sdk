@@ -58,14 +58,33 @@ async function stopTree(owner: ChildProcess): Promise<void> {
       });
       killer.once("error", reject);
       killer.once("close", (code) => {
-        if (code !== 0 && owner.exitCode === null && owner.signalCode === null)
-          reject(
-            new AuditError(
-              "TERMINATION_FAILED",
-              "Could not stop an owned process tree.",
-            ),
-          );
-        else resolve();
+        if (
+          code === 0 ||
+          owner.exitCode !== null ||
+          owner.signalCode !== null
+        ) {
+          resolve();
+          return;
+        }
+        // taskkill can report an already-gone PID before Node dispatches exit.
+        // Confirm completion before declaring failure; never ignore a live owner.
+        const exited = (): void => {
+          clearTimeout(timer);
+          owner.removeListener("exit", exited);
+          resolve();
+        };
+        const timer = setTimeout(() => {
+          owner.removeListener("exit", exited);
+          if (owner.exitCode !== null || owner.signalCode !== null) resolve();
+          else
+            reject(
+              new AuditError(
+                "TERMINATION_FAILED",
+                "Could not stop an owned process tree.",
+              ),
+            );
+        }, 1000);
+        owner.once("exit", exited);
       });
     });
     return;

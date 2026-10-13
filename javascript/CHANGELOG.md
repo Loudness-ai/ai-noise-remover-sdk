@@ -7,6 +7,7 @@
 - Add a one-sample cancellation regression for denoising and conversion that verifies existing destinations and scratch cleanup.
 - Open scratch storage before starting the decoder so a fast child cannot exit and drain unread output during a slow filesystem operation; exercise the race with deliberately delayed file opens.
 - Escape generated TypeScript import paths correctly on Windows.
+- Confirm a racing Windows worker exit before classifying a failed taskkill invocation; retain a bounded failure when the worker stays alive.
 
 ## Public release preparation — 2026-10-13
 

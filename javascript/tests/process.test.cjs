@@ -2,6 +2,55 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const { run } = require("../dist/cjs/process.js");
 const kit = require("../dist/cjs/index.js");
+test("Windows taskkill races confirm exit without accepting a still-live worker", async () => {
+  const children = require("node:child_process");
+  const { EventEmitter, once } = require("node:events");
+  const actualSpawn = children.spawn;
+  const platform = Object.getOwnPropertyDescriptor(process, "platform");
+  for (const exits of [true, false]) {
+    let owner,
+      killerCalls = 0;
+    const controller = new AbortController();
+    Object.defineProperty(process, "platform", { ...platform, value: "win32" });
+    children.spawn = function (executable, args, options) {
+      if (executable !== "taskkill") {
+        owner = actualSpawn(executable, args, options);
+        return owner;
+      }
+      killerCalls++;
+      const killer = new EventEmitter();
+      process.nextTick(() => killer.emit("close", 1));
+      if (exits) setTimeout(() => owner.kill("SIGKILL"), 25);
+      return killer;
+    };
+    try {
+      await assert.rejects(
+        run(
+          process.execPath,
+          ["-e", "console.log(process.pid);setInterval(()=>{},1000)"],
+          {
+            signal: controller.signal,
+            onChunk: () => controller.abort(),
+          },
+        ),
+        { code: exits ? "CANCELLED" : "TERMINATION_FAILED" },
+      );
+      assert.equal(killerCalls, 1);
+      if (exits)
+        assert.throws(() => process.kill(owner.pid, 0), { code: "ESRCH" });
+      else assert.doesNotThrow(() => process.kill(owner.pid, 0));
+    } finally {
+      children.spawn = actualSpawn;
+      Object.defineProperty(process, "platform", platform);
+      if (owner && owner.exitCode === null && owner.signalCode === null) {
+        owner.ref();
+        const finished = once(owner, "exit");
+        owner.kill("SIGKILL");
+        await finished;
+      }
+    }
+  }
+});
 test("already cancelled execution creates no process", async () => {
   await assert.rejects(
     run(process.execPath, ["-e", "process.exit(0)"], {
