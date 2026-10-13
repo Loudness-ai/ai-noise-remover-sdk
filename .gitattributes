@@ -1,0 +1,19 @@
+# Keep source, schemas and formatter checks identical on every platform.
+* text=auto eol=lf
+
+# Preserve exact processing assets and credited recordings.
+*.onnx -text
+*.bin -text
+*.wav -text
+*.ogg -text
+*.mp3 -text
+*.flac -text
+*.m4a -text
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.woff -text
+*.woff2 -text
+*.zip -text
+*.tgz -text
+*.whl -text
