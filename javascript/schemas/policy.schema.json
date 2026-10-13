@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Policy",
+  "$ref": "#/$defs/Policy",
+  "$defs": {
+    "Policy": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1,
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NumericRule"
+          }
+        },
+        "codecs": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "containers": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "unavailable": {
+          "anyOf": [
+            {
+              "const": "warning",
+              "type": "string"
+            },
+            {
+              "const": "fail",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "name",
+        "rules"
+      ],
+      "additionalProperties": false
+    },
+    "NumericRule": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "anyOf": [
+            {
+              "const": "durationSeconds",
+              "type": "string"
+            },
+            {
+              "const": "sizeBytes",
+              "type": "string"
+            },
+            {
+              "const": "channels",
+              "type": "string"
+            },
+            {
+              "const": "sampleRate",
+              "type": "string"
+            },
+            {
+              "const": "integratedLufs",
+              "type": "string"
+            },
+            {
+              "const": "truePeakDbtp",
+              "type": "string"
+            },
+            {
+              "const": "samplePeakDbfs",
+              "type": "string"
+            },
+            {
+              "const": "rmsDbfs",
+              "type": "string"
+            },
+            {
+              "const": "nearFullScaleSamples",
+              "type": "string"
+            },
+            {
+              "const": "longestNearFullScaleRun",
+              "type": "string"
+            },
+            {
+              "const": "maxAbsDcOffset",
+              "type": "string"
+            },
+            {
+              "const": "silenceSeconds",
+              "type": "string"
+            },
+            {
+              "const": "leadingSilenceSeconds",
+              "type": "string"
+            },
+            {
+              "const": "trailingSilenceSeconds",
+              "type": "string"
+            },
+            {
+              "const": "channelImbalanceDb",
+              "type": "string"
+            }
+          ]
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "severity": {
+          "anyOf": [
+            {
+              "const": "warning",
+              "type": "string"
+            },
+            {
+              "const": "fail",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "metric"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

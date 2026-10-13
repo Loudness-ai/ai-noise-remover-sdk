@@ -1,0 +1,133 @@
+{
+  "name": "loudness-audio-kit",
+  "version": "1.0.0",
+  "description": "Local AI speech denoising and enhancement, loudness normalization, audio export, measurement and validation for developers.",
+  "license": "SEE LICENSE IN DISTRIBUTION-LICENSE",
+  "type": "commonjs",
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0"
+  },
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/esm/core.d.ts",
+        "default": "./dist/esm/core.js"
+      },
+      "require": {
+        "types": "./dist/cjs/core.d.ts",
+        "default": "./dist/cjs/core.js"
+      }
+    },
+    "./report": {
+      "import": {
+        "types": "./dist/esm/report.d.ts",
+        "default": "./dist/esm/report.js"
+      },
+      "require": {
+        "types": "./dist/cjs/report.d.ts",
+        "default": "./dist/cjs/report.js"
+      }
+    },
+    "./benchmark": {
+      "import": {
+        "types": "./dist/esm/benchmark.d.ts",
+        "default": "./dist/esm/benchmark.js"
+      },
+      "require": {
+        "types": "./dist/cjs/benchmark.d.ts",
+        "default": "./dist/cjs/benchmark.js"
+      }
+    },
+    "./processing": {
+      "import": {
+        "types": "./dist/esm/processing.d.ts",
+        "default": "./dist/esm/processing.js"
+      },
+      "require": {
+        "types": "./dist/cjs/processing.d.ts",
+        "default": "./dist/cjs/processing.js"
+      }
+    }
+  },
+  "bin": {
+    "audio-audit": "dist/cjs/cli.js",
+    "loudness-audio": "dist/cjs/cli.js"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "docs",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "DISTRIBUTION-LICENSE",
+    "NOTICE",
+    "third-party",
+    "CHANGELOG.md",
+    "models"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 tests/*.test.cjs",
+    "test:types": "node scripts/typecheck-consumers.mjs",
+    "check:schemas": "node scripts/schemas.mjs --check",
+    "test:long": "node --expose-gc scripts/long-check.mjs",
+    "verify:package": "node scripts/verify-package.mjs",
+    "verify:source": "node scripts/fresh-source-check.mjs",
+    "demo": "node demo/server.cjs",
+    "prepack": "npm run build",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/*.cjs\" \"scripts/*.{mjs,cjs}\" \"demo/*.{cjs,js,html,css}\" \"examples/*.{cjs,mjs,mts,html,json}\"",
+    "lint": "prettier --check \"src/**/*.ts\" \"tests/*.cjs\" \"scripts/*.{mjs,cjs}\" \"demo/*.{cjs,js,html,css}\" \"examples/*.{cjs,mjs,mts,html,json}\"",
+    "test:processing-evidence": "node scripts/processing-evidence.mjs",
+    "test:hour": "node scripts/long-processing.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.15",
+    "ajv": "8.20.0",
+    "busboy": "1.6.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "onnxruntime-node": "1.30.0"
+  },
+  "homepage": "https://loudness.ai/",
+  "author": {
+    "name": "Loudness.ai",
+    "url": "https://loudness.ai/"
+  },
+  "keywords": [
+    "audio",
+    "noise-removal",
+    "speech-enhancement",
+    "loudness",
+    "audio-processing",
+    "offline",
+    "typescript",
+    "nodejs"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/secretheart49/loudness-audio-kit.git",
+    "directory": "javascript"
+  },
+  "bugs": {
+    "url": "https://github.com/secretheart49/loudness-audio-kit/issues"
+  }
+}

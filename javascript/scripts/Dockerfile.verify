@@ -1,0 +1,7 @@
+ARG KIT_IMAGE=loudness-audio-kit:local
+FROM ${KIT_IMAGE}
+USER root
+COPY . /app
+RUN npm ci --ignore-scripts --no-audit --no-fund && npm ci --prefix demo --ignore-scripts --no-audit --no-fund && chown -R node:node /app
+USER node
+CMD ["npm", "test"]

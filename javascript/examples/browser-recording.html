@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><title>Audio Audit browser recording fixture</title>
+  <body>
+    <h1>Browser recording fixture</h1>
+    <p>
+      Generate a two-second 440 Hz test signal with this browser's MediaRecorder
+      encoder. It uses no microphone and sends no data.
+    </p>
+    <button id="record">Generate recording</button>
+    <p id="status" role="status">Ready.</p>
+    <a id="download" hidden>Download browser recording</a>
+    <script>
+      const button = document.querySelector("#record"),
+        status = document.querySelector("#status"),
+        download = document.querySelector("#download");
+      let url;
+      button.addEventListener("click", async () => {
+        button.disabled = true;
+        download.hidden = true;
+        const context = new AudioContext(),
+          destination = context.createMediaStreamDestination(),
+          oscillator = context.createOscillator(),
+          gain = context.createGain();
+        try {
+          await context.resume();
+          gain.gain.value = 0.1;
+          oscillator.frequency.value = 440;
+          oscillator.connect(gain).connect(destination);
+          const mime = [
+            "audio/webm;codecs=opus",
+            "audio/mp4",
+            "audio/ogg;codecs=opus",
+          ].find((m) => MediaRecorder.isTypeSupported(m));
+          if (!mime) throw Error("No supported audio recorder encoder.");
+          const recorder = new MediaRecorder(destination.stream, {
+              mimeType: mime,
+            }),
+            chunks = [];
+          recorder.ondataavailable = (e) => {
+            if (e.data.size) chunks.push(e.data);
+          };
+          const finished = new Promise(
+            (resolve) => (recorder.onstop = resolve),
+          );
+          recorder.start();
+          oscillator.start();
+          status.textContent = "Recording test signal…";
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          recorder.stop();
+          oscillator.stop();
+          await finished;
+          if (url) URL.revokeObjectURL(url);
+          url = URL.createObjectURL(new Blob(chunks, { type: mime }));
+          download.href = url;
+          download.download =
+            "browser-tone." +
+            (mime.includes("webm")
+              ? "webm"
+              : mime.includes("mp4")
+                ? "m4a"
+                : "ogg");
+          download.hidden = false;
+          status.textContent = "Recording ready: " + mime;
+        } catch (e) {
+          status.textContent = e.message;
+        } finally {
+          destination.stream.getTracks().forEach((t) => t.stop());
+          await context.close();
+          button.disabled = false;
+        }
+      });
+      window.addEventListener("pagehide", () => {
+        if (url) URL.revokeObjectURL(url);
+      });
+    </script>
+  </body>
+</html>

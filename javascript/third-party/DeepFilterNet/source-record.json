@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-13T08:12:37.250086+00:00",
+  "scope": "Upstream code notices only. Exact bundled pretrained-weight provenance and redistribution terms remain unresolved.",
+  "sources": [
+    {
+      "repository": "Rikorose/DeepFilterNet",
+      "revision": "d375b2d8309e0935d165700c91da9de862a99c31",
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Rikorose/DeepFilterNet/d375b2d8309e0935d165700c91da9de862a99c31/LICENSE",
+      "sha256": "f7ef673bf046d823dcd775bdd0768432bd8855f81d0e5e1290a0a48c42e2dca3"
+    },
+    {
+      "repository": "Rikorose/DeepFilterNet",
+      "revision": "d375b2d8309e0935d165700c91da9de862a99c31",
+      "file": "LICENSE-MIT",
+      "url": "https://raw.githubusercontent.com/Rikorose/DeepFilterNet/d375b2d8309e0935d165700c91da9de862a99c31/LICENSE-MIT",
+      "sha256": "24e6bb09c928af8d8e56268082f87413247ce36b39dd5d33add2f9893968065e"
+    },
+    {
+      "repository": "Rikorose/DeepFilterNet",
+      "revision": "d375b2d8309e0935d165700c91da9de862a99c31",
+      "file": "LICENSE-APACHE",
+      "url": "https://raw.githubusercontent.com/Rikorose/DeepFilterNet/d375b2d8309e0935d165700c91da9de862a99c31/LICENSE-APACHE",
+      "sha256": "1eaee808c5fb6b4e895ba30425285a5cdc5dd25bba2cd230f264c2200c331aec"
+    },
+    {
+      "repository": "grazder/DeepFilterNet",
+      "revision": "1097015d53ced78fb234e7d7071a5dd4446e3952",
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/grazder/DeepFilterNet/1097015d53ced78fb234e7d7071a5dd4446e3952/LICENSE",
+      "sha256": "f7ef673bf046d823dcd775bdd0768432bd8855f81d0e5e1290a0a48c42e2dca3"
+    },
+    {
+      "repository": "grazder/DeepFilterNet",
+      "revision": "1097015d53ced78fb234e7d7071a5dd4446e3952",
+      "file": "LICENSE-MIT",
+      "url": "https://raw.githubusercontent.com/grazder/DeepFilterNet/1097015d53ced78fb234e7d7071a5dd4446e3952/LICENSE-MIT",
+      "sha256": "24e6bb09c928af8d8e56268082f87413247ce36b39dd5d33add2f9893968065e"
+    },
+    {
+      "repository": "grazder/DeepFilterNet",
+      "revision": "1097015d53ced78fb234e7d7071a5dd4446e3952",
+      "file": "LICENSE-APACHE",
+      "url": "https://raw.githubusercontent.com/grazder/DeepFilterNet/1097015d53ced78fb234e7d7071a5dd4446e3952/LICENSE-APACHE",
+      "sha256": "1eaee808c5fb6b4e895ba30425285a5cdc5dd25bba2cd230f264c2200c331aec"
+    }
+  ]
+}

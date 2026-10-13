@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "fixtures": [
+    {
+      "path": "recording.wav",
+      "sha256": "REPLACE_WITH_THE_FILE_SHA256",
+      "license": "REPLACE_WITH_THE_FIXTURE_LICENSE"
+    }
+  ],
+  "processors": [
+    {
+      "name": "PCM conversion",
+      "executable": "ffmpeg",
+      "args": [
+        "-hide_banner",
+        "-nostdin",
+        "-loglevel",
+        "error",
+        "-i",
+        "{input}",
+        "-c:a",
+        "pcm_s16le",
+        "{output}"
+      ],
+      "version": "REPLACE_WITH_FFMPEG_VERSION",
+      "settings": { "codec": "pcm_s16le" }
+    }
+  ],
+  "repetitions": 5,
+  "warmup": 1,
+  "comparison": true
+}

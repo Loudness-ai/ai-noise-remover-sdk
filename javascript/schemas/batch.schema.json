@@ -1,0 +1,660 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Batch",
+  "$ref": "#/$defs/Batch",
+  "$defs": {
+    "Batch": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1,
+          "type": "number"
+        },
+        "kind": {
+          "const": "batch",
+          "type": "string"
+        },
+        "concurrency": {
+          "type": "number"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BatchItem"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "kind",
+        "concurrency",
+        "results"
+      ],
+      "additionalProperties": false
+    },
+    "BatchItem": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "const": "completed",
+              "type": "string"
+            },
+            {
+              "const": "failed",
+              "type": "string"
+            },
+            {
+              "const": "cancelled",
+              "type": "string"
+            }
+          ]
+        },
+        "analysis": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Analysis"
+            }
+          ]
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "file",
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "Analysis": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1,
+          "type": "number"
+        },
+        "kind": {
+          "const": "analysis",
+          "type": "string"
+        },
+        "input": {
+          "$ref": "#/$defs/Inspection"
+        },
+        "durationSeconds": {
+          "type": "number"
+        },
+        "frames": {
+          "type": "number"
+        },
+        "decodedPcmSha256": {
+          "type": "string"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "const": "measured",
+              "type": "string"
+            },
+            {
+              "const": "silent",
+              "type": "string"
+            },
+            {
+              "const": "too_short",
+              "type": "string"
+            },
+            {
+              "const": "below_loudness_gate",
+              "type": "string"
+            },
+            {
+              "const": "unknown_channel_layout",
+              "type": "string"
+            }
+          ]
+        },
+        "integratedLufs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "truePeakDbtp": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "loudnessRangeLu": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "samplePeakDbfs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "rmsDbfs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ChannelMeasurement"
+          }
+        },
+        "stereoCorrelation": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "channelImbalanceDb": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "silence": {
+          "type": "object",
+          "properties": {
+            "thresholdDbfs": {
+              "type": "number"
+            },
+            "minSeconds": {
+              "type": "number"
+            },
+            "totalSeconds": {
+              "type": "number"
+            },
+            "leadingSeconds": {
+              "type": "number"
+            },
+            "trailingSeconds": {
+              "type": "number"
+            },
+            "intervals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Interval"
+              }
+            },
+            "totalIntervals": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "thresholdDbfs",
+            "minSeconds",
+            "totalSeconds",
+            "leadingSeconds",
+            "trailingSeconds",
+            "intervals",
+            "totalIntervals"
+          ],
+          "additionalProperties": false
+        },
+        "discontinuities": {
+          "type": "object",
+          "properties": {
+            "threshold": {
+              "type": "number"
+            },
+            "totalCandidates": {
+              "type": "number"
+            },
+            "candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "timeSeconds": {
+                    "type": "number"
+                  },
+                  "channel": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "timeSeconds",
+                  "channel"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "threshold",
+            "totalCandidates",
+            "candidates"
+          ],
+          "additionalProperties": false
+        },
+        "bandEnergy": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "const": "one-pole-crossover",
+              "type": "string"
+            },
+            "lowDbfs": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "midDbfs": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "highDbfs": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "required": [
+            "method",
+            "lowDbfs",
+            "midDbfs",
+            "highDbfs"
+          ],
+          "additionalProperties": false
+        },
+        "waveform": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WavePoint"
+          }
+        },
+        "loudnessTimeline": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LoudnessPoint"
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "waveformBinSeconds": {
+              "type": "number"
+            },
+            "loudnessStride": {
+              "type": "number"
+            },
+            "eventsCapped": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "waveformBinSeconds",
+            "loudnessStride",
+            "eventsCapped"
+          ],
+          "additionalProperties": false
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "clippingThreshold": {
+              "type": "number"
+            },
+            "nativeThreads": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "clippingThreshold",
+            "nativeThreads"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "kind",
+        "input",
+        "durationSeconds",
+        "frames",
+        "decodedPcmSha256",
+        "state",
+        "integratedLufs",
+        "truePeakDbtp",
+        "loudnessRangeLu",
+        "samplePeakDbfs",
+        "rmsDbfs",
+        "channels",
+        "stereoCorrelation",
+        "channelImbalanceDb",
+        "silence",
+        "discontinuities",
+        "bandEnergy",
+        "waveform",
+        "loudnessTimeline",
+        "coverage",
+        "settings"
+      ],
+      "additionalProperties": false
+    },
+    "Inspection": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1,
+          "type": "number"
+        },
+        "kind": {
+          "const": "inspection",
+          "type": "string"
+        },
+        "file": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "sizeBytes": {
+              "type": "number"
+            },
+            "container": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "sizeBytes",
+            "container"
+          ],
+          "additionalProperties": false
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AudioStream"
+          }
+        },
+        "selectedStream": {
+          "$ref": "#/$defs/AudioStream"
+        },
+        "declaredDurationSeconds": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "kind",
+        "file",
+        "streams",
+        "selectedStream",
+        "declaredDurationSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "AudioStream": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "number"
+        },
+        "codec": {
+          "type": "string"
+        },
+        "sampleRate": {
+          "type": "number"
+        },
+        "channels": {
+          "type": "number"
+        },
+        "channelLayout": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "declaredDurationSeconds": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "index",
+        "codec",
+        "sampleRate",
+        "channels",
+        "channelLayout",
+        "declaredDurationSeconds",
+        "language"
+      ],
+      "additionalProperties": false
+    },
+    "ChannelMeasurement": {
+      "type": "object",
+      "properties": {
+        "samplePeakDbfs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "rmsDbfs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "crestFactorDb": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "dcOffset": {
+          "type": "number"
+        },
+        "nearFullScaleSamples": {
+          "type": "number"
+        },
+        "longestNearFullScaleRun": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "samplePeakDbfs",
+        "rmsDbfs",
+        "crestFactorDb",
+        "dcOffset",
+        "nearFullScaleSamples",
+        "longestNearFullScaleRun"
+      ],
+      "additionalProperties": false
+    },
+    "Interval": {
+      "type": "object",
+      "properties": {
+        "startSeconds": {
+          "type": "number"
+        },
+        "endSeconds": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "startSeconds",
+        "endSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "WavePoint": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "rms": {
+          "type": "number"
+        },
+        "startSeconds": {
+          "type": "number"
+        },
+        "endSeconds": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "min",
+        "max",
+        "rms",
+        "startSeconds",
+        "endSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "LoudnessPoint": {
+      "type": "object",
+      "properties": {
+        "timeSeconds": {
+          "type": "number"
+        },
+        "momentaryLufs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "shortTermLufs": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "required": [
+        "timeSeconds",
+        "momentaryLufs",
+        "shortTermLufs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

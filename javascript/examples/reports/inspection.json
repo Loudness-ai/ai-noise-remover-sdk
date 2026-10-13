@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "kind": "inspection",
+  "file": {
+    "name": "sample.wav",
+    "sizeBytes": 384044,
+    "container": "wav"
+  },
+  "streams": [
+    {
+      "index": 0,
+      "codec": "pcm_f32le",
+      "sampleRate": 48000,
+      "channels": 1,
+      "channelLayout": null,
+      "declaredDurationSeconds": 2,
+      "language": null
+    }
+  ],
+  "selectedStream": {
+    "index": 0,
+    "codec": "pcm_f32le",
+    "sampleRate": 48000,
+    "channels": 1,
+    "channelLayout": null,
+    "declaredDurationSeconds": 2,
+    "language": null
+  },
+  "declaredDurationSeconds": 2
+}

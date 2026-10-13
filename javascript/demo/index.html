@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loudness.ai Audio Kit — noise removal and audio enhancement</title>
+    <link rel="icon" href="/brand.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="https://loudness.ai/" class="brand"
+        ><img src="/brand.svg" alt="Loudness.ai" width="226" height="32" /></a
+      ><span>Audio Kit</span>
+    </header>
+    <main>
+      <section class="entry">
+        <p class="eyebrow">FOR AUDIO DEVELOPERS</p>
+        <h1>Remove noise. Enhance speech.</h1>
+        <p>
+          Clean a voice recording, download the processed audio and check its
+          loudness and peaks.
+        </p>
+        <form id="audit-form">
+          <div class="mode">
+            <label for="mode">Task</label
+            ><select id="mode">
+              <option value="enhance">Enhance speech</option>
+              <option value="denoise">Remove background noise</option>
+              <option value="analyze">Measure a recording</option>
+              <option value="validate">Check example delivery settings</option>
+              <option value="compare">Compare before and after</option>
+            </select>
+          </div>
+          <div class="files">
+            <label id="first-label" for="first">Audio file</label
+            ><input
+              id="first"
+              type="file"
+              accept="audio/*,video/mp4,video/quicktime,.flac,.opus,.webm"
+              required
+            />
+            <div id="second-wrap" hidden>
+              <label for="second">Processed file</label
+              ><input
+                id="second"
+                type="file"
+                accept="audio/*,video/mp4,video/quicktime,.flac,.opus,.webm"
+              />
+            </div>
+          </div>
+          <p class="requirements" id="requirements">
+            MP3, WAV, M4A, AAC, FLAC, OGG, Opus or WebM · Up to 25 MB per file ·
+            Up to 5 minutes · One audio track
+          </p>
+          <p id="policy-note" hidden>
+            Example settings: −20 to −14 LUFS, true peak at or below −1 dBTP and
+            no near-full-scale samples. These are editable examples, not
+            universal delivery requirements.
+          </p>
+          <div class="actions">
+            <button id="audit-submit" type="submit">Analyze audio</button
+            ><button id="cancel" type="button" hidden>Cancel</button
+            ><button id="audit-reset" type="button">Reset</button>
+          </div>
+          <button id="example" class="example" type="button">
+            Try an example
+          </button>
+          <p id="status" role="status" aria-live="polite">Ready.</p>
+        </form>
+        <p class="privacy">
+          Files are deleted after processing and delivery, or when the request
+          is cancelled. No account is required.
+        </p>
+      </section>
+      <section id="result" hidden>
+        <div class="result-actions">
+          <h2>Your result</h2>
+          <a id="download-audio" download="processed.wav" hidden
+            >Download WAV</a
+          >
+          <a id="download-json" download="audio-audit.json">Download JSON</a
+          ><a id="download-html" download="audio-audit.html">Download HTML</a>
+        </div>
+        <audio id="processed-audio" controls hidden></audio>
+        <p id="processed-summary" hidden></p>
+        <iframe
+          id="preview"
+          title="Audio measurements and comparison report"
+          sandbox
+        ></iframe>
+      </section>
+      <section class="explanation">
+        <h2>Clean recordings and verify the output</h2>
+        <div class="features">
+          <div>
+            <h3>Remove noise</h3>
+            <p>
+              Reduce background noise in speech recordings while retaining their
+              complete duration.
+            </p>
+          </div>
+          <div>
+            <h3>Enhance speech</h3>
+            <p>
+              Clean speech, reduce low rumble and prepare a more even recording
+              level.
+            </p>
+          </div>
+          <div>
+            <h3>Verify</h3>
+            <p>
+              Check duration changes and sampled timing, with confidence and
+              limitations shown.
+            </p>
+          </div>
+        </div>
+        <p>
+          Downloadable developer software runs on your own machine or server.
+          This demonstration processes submitted files on its host.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <a href="https://loudness.ai/">Explore Loudness.ai audio tools</a>
+      <p>
+        Loudness.ai Audio Kit runs on your computer or server. This
+        demonstration processes files on its host.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+name: Verify Audio Kit
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  javascript:
+    name: Node ${{ matrix.node }} / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [22, 24]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: javascript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: javascript/package-lock.json
+      - name: Install FFmpeg
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then sudo apt-get update && sudo apt-get install -y ffmpeg procps; fi
+          if [[ "$RUNNER_OS" == "macOS" ]] && ! command -v ffmpeg >/dev/null; then brew install ffmpeg; fi
+          if [[ "$RUNNER_OS" == "Windows" ]]; then choco install ffmpeg -y --no-progress; fi
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm ci --prefix demo --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: npm run test:types
+      - run: npm run check:schemas
+      - run: npm run verify:package
+      - run: npm run lint
+  python:
+    name: Python ${{ matrix.python }} / ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.11'
+          - os: ubuntu-latest
+            python: '3.14'
+          - os: macos-latest
+            python: '3.12'
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: python/pyproject.toml
+      - name: Install FFmpeg
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then sudo apt-get update && sudo apt-get install -y ffmpeg procps; fi
+          if [[ "$RUNNER_OS" == "macOS" ]] && ! command -v ffmpeg >/dev/null; then brew install ffmpeg; fi
+      - run: python -m pip install -e '.[dev]'
+      - run: ruff check src tests scripts examples
+      - run: ruff format --check src tests scripts examples
+      - run: mypy src
+      - run: pytest -q
+      - run: python -m build
+      - run: twine check dist/*
+      - run: python scripts/release_check.py
+  long-file:
+    name: Node long-file resources
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: javascript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg procps
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build
+      - run: npm run test:long
+      - uses: actions/upload-artifact@v4
+        with:
+          name: long-file-evidence
+          path: javascript/artifacts/long-file-evidence.json

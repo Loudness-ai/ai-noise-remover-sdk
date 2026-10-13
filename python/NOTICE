@@ -1,0 +1,21 @@
+Loudness.ai Audio Kit distribution
+
+Loudness.ai wrapper, scheduling, CLI and documentation code: MIT (see LICENSE).
+Distribution component terms: see DISTRIBUTION-LICENSE.
+DeepFilterNet architecture and upstream code: Hendrik Schroeter and contributors,
+https://github.com/Rikorose/DeepFilterNet (upstream code MIT OR Apache-2.0).
+Exact ONNX distribution: wuxuedaifu/deepfilter-stream, model-dfn3-512-v1 release.
+https://github.com/wuxuedaifu/deepfilter-stream/releases/tag/model-dfn3-512-v1
+deepfilter-stream copyright (c) 2024 Fu Dai; its original MIT LICENSE and NOTICE
+are included in third-party/deepfilter-stream. The publisher attributes the
+512-hop / 1024-FFT fine-tuned torchDF export to the DeepFilterNet authors under
+MIT/Apache-2.0. The graph checksum and each repacked initial-state array match
+the release. This distribution elects the MIT reading of the published terms;
+no separate original-author weight-scope confirmation is claimed.
+Streaming code reference: grazder/DeepFilterNet, torchDF-changes revision
+1097015d53ced78fb234e7d7071a5dd4446e3952. Verbatim upstream code notices and
+recorded source checksums are in third-party/DeepFilterNet. This reference is
+not claimed as the exact original checkpoint/export recipe.
+Bundled assets are not original Loudness.ai models. See docs/provenance.md.
+NumPy, SciPy, ONNX Runtime and psutil retain their own licenses/notices.
+FFmpeg/FFprobe are external executables; licensing and codec patents depend on the adopter's build.

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+artifacts/
+*.tgz
+.reference-venv/
+.qa-node24/
+*.log
+.DS_Store

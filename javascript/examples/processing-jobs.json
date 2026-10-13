@@ -1,0 +1,14 @@
+[
+  {
+    "input": "voice.wav",
+    "output": "voice-clean.wav",
+    "mode": "enhance",
+    "options": { "targetLufs": -16, "truePeakDbtp": -1.5 }
+  },
+  {
+    "input": "interview.mp3",
+    "output": "interview-denoised.flac",
+    "mode": "denoise",
+    "options": { "strength": 0.85 }
+  }
+]

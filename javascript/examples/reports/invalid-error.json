@@ -1,0 +1,4 @@
+{
+  "code": "MEDIA_INVALID",
+  "message": "The input is not readable media or its header is damaged."
+}

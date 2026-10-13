@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-13T08:47:03.814395+00:00",
+  "repository": "wuxuedaifu/deepfilter-stream",
+  "revision": "be1a989760c93f3107c0c39a6d866df8d6bd40b2",
+  "sources": [
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/wuxuedaifu/deepfilter-stream/be1a989760c93f3107c0c39a6d866df8d6bd40b2/LICENSE",
+      "sha256": "f879607e68680d8df2fc0bb5b511eeeceafd82bb40af69c649be89ededb37c01"
+    },
+    {
+      "file": "NOTICE",
+      "url": "https://raw.githubusercontent.com/wuxuedaifu/deepfilter-stream/be1a989760c93f3107c0c39a6d866df8d6bd40b2/NOTICE",
+      "sha256": "e62360e8b61a1fefdd550753445bf2b507bf93e093f75c9ca91dc0a9b27d672c"
+    }
+  ],
+  "model_release": {
+    "tag": "model-dfn3-512-v1",
+    "onnx_sha256": "b758c49d6708a5b7979e3de185705a8a4915076c862fb17b1b304d9a72b75cdc",
+    "onnx_download_url": "https://github.com/wuxuedaifu/deepfilter-stream/releases/download/model-dfn3-512-v1/denoiser_model.onnx",
+    "initial_states_npz_url": "https://github.com/wuxuedaifu/deepfilter-stream/releases/download/model-dfn3-512-v1/initial_states.npz",
+    "initial_states_npz_sha256": "1165503707b8859a6b650b6bb0dc5b6c55d30c2779d87502f97a77102b5d3872",
+    "packed_initial_states_sha256": "7664728d90e7b17655cf4d308d46d42fdea6c3a69c374e494164c7cb44d783fc",
+    "all_state_arrays_verified_bitwise": true
+  },
+  "licensing_basis": "Publisher attributes the 512/1024 torchDF fine-tuned export to DeepFilterNet under MIT/Apache-2.0. This distribution elects MIT on that published reading.",
+  "weight_scope_separately_confirmed_by_original_author": false,
+  "original_training_checkpoint_and_finetuning_recipe_verified": false
+}

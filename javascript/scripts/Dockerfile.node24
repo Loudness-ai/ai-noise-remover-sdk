@@ -1,0 +1,6 @@
+FROM node:24-bookworm-slim AS runtime
+FROM loudness-audio-kit:verify
+USER root
+COPY --from=runtime /usr/local/bin/node /usr/local/bin/node
+USER node
+CMD ["npm", "test"]

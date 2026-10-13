@@ -1,0 +1,4 @@
+[
+  {"input": "recording.wav", "output": "recording-clean.wav", "mode": "denoise"},
+  {"input": "podcast.mp3", "output": "podcast-enhanced.flac", "mode": "enhance", "options": {"bit_depth": 24}}
+]

@@ -1,0 +1,22 @@
+Loudness.ai Audio Kit source repository
+
+The root LICENSE grants the MIT license for original Loudness.ai wrapper,
+scheduling, CLI, demo and documentation code. It does not relicense third-party
+models, dependencies or recordings.
+
+The full component distribution terms and original notices are preserved in:
+
+  javascript/DISTRIBUTION-LICENSE
+  javascript/NOTICE
+  javascript/third-party/
+  javascript/docs/provenance.md
+
+  python/DISTRIBUTION-LICENSE
+  python/NOTICE
+  python/third-party/
+  python/docs/provenance.md
+
+Each edition bundles the same checksum-verified model export and elects the
+published MIT interpretation recorded in its provenance document. No separate
+original-author weight-scope grant or reproducible training recipe is claimed.
+Retain the relevant original notices and fixture credits when redistributing.

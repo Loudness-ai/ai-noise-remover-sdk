@@ -1,0 +1,40 @@
+Loudness.ai Audio Kit distribution terms
+
+The package license field points to this component record; it does not
+represent every bundled component as MIT-licensed.
+
+1. Loudness.ai code
+The JavaScript/TypeScript processing adapter, scheduler, lifecycle, CLI,
+reports, schemas, documentation and demo authored by Loudness.ai are licensed under the included MIT
+LICENSE. The optional credit/backlink is not a condition of that license.
+
+2. Upstream code notices
+DeepFilterNet and the reviewed torchDF reference state MIT OR Apache-2.0 for
+upstream code. Verbatim texts and pinned source records are included under
+third-party/DeepFilterNet. The MIT option is elected for this distribution.
+deepfilter-stream's original MIT LICENSE and model attribution NOTICE are
+included under third-party/deepfilter-stream. Preserve the applicable notices
+with copies. Loudness.ai does not grant new rights over upstream components.
+
+3. Bundled pretrained assets
+models/dfn3-512-v1 contains the graph from
+wuxuedaifu/deepfilter-stream's model-dfn3-512-v1 release. Its SHA-256 is
+b758c49d6708a5b7979e3de185705a8a4915076c862fb17b1b304d9a72b75cdc.
+Every initial-state array matches that release's initial_states.npz; this
+package stores those arrays as concatenated little-endian float32 data.
+
+The publisher's NOTICE attributes this 512-hop / 1024-FFT fine-tuned torchDF
+export to DeepFilterNet under MIT/Apache-2.0. This distribution adopts the MIT
+reading of those published terms and retains the original attribution. The
+model is not original Loudness.ai work. The original author's README expressly
+describes code; no separate statement clarifying pretrained-weight scope has
+been obtained. The original training checkpoint and fine-tuning recipe have
+not been independently verified. This record documents the adopted licensing
+interpretation, rather than claiming a separate grant or author confirmation.
+See docs/provenance.md and third-party/deepfilter-stream/source-record.json.
+
+4. Other components
+Native dependencies, external FFmpeg/FFprobe installations, recorded fixtures
+and branding retain their own applicable terms. LICENSE and NOTICE describe
+their attribution scope. This file adds no license to third-party components
+and does not replace their licenses.

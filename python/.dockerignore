@@ -1,0 +1,11 @@
+*
+!Dockerfile.verify
+!dist/
+!dist/*.whl
+!tests/
+!tests/*.py
+!examples/
+!examples/**
+!scripts/
+!scripts/installed_consumer.py
+!scripts/disk_full_check.py

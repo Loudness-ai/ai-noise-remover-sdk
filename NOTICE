@@ -1,0 +1,9 @@
+Loudness.ai Audio Kit
+
+Original wrapper, scheduling, CLI, demo and documentation code is authored by
+Loudness.ai contributors and licensed under MIT. https://loudness.ai/
+
+The JavaScript and native Python editions include upstream speech-processing
+assets, runtime dependencies and credited example recordings. Their original
+copyright, license and source notices remain in each edition's NOTICE,
+DISTRIBUTION-LICENSE, third-party directory and docs/provenance.md.

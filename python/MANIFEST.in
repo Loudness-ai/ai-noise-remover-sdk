@@ -1,0 +1,9 @@
+include README.md LICENSE DISTRIBUTION-LICENSE NOTICE
+recursive-include third-party LICENSE* NOTICE *.json
+include CHANGELOG.md CONTRIBUTING.md SECURITY.md Dockerfile.verify
+recursive-include docs *.md
+recursive-include examples *.py *.json
+recursive-include examples *.ogg
+recursive-include tests *.py
+recursive-include scripts *.py
+exclude AGENTS.md

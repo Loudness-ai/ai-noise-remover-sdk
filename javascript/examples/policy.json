@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "name": "Example recording delivery",
+  "unavailable": "warning",
+  "rules": [
+    { "metric": "integratedLufs", "min": -20, "max": -14 },
+    { "metric": "truePeakDbtp", "max": -1 },
+    { "metric": "maxAbsDcOffset", "max": 0.01, "severity": "warning" }
+  ]
+}

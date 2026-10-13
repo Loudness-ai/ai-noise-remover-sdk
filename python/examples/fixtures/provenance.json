@@ -1,0 +1,28 @@
+{
+  "fixtures": [
+    {
+      "file": "narration-a.ogg",
+      "source": "https://librosa.org/data/audio/5703-47212-0000.ogg",
+      "recordingCredit": "Garth Comira",
+      "description": "Ashiel Mystery, chapter 2",
+      "dataset": "LibriSpeech",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "datasetLicenseEvidence": "https://www.openslr.org/12/",
+      "modifications": "Unmodified source OGG excerpt",
+      "sha256": "a284612b46af0535f7e1873758c4387bb8369f6dbbe192ffdec1f171108f98dd"
+    },
+    {
+      "file": "narration-b.ogg",
+      "source": "https://librosa.org/data/audio/198-209-0000.ogg",
+      "recordingCredit": "Heather Barnett",
+      "description": "Sense and Sensibility, chapter 18",
+      "dataset": "LibriSpeech",
+      "license": "CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "datasetLicenseEvidence": "https://www.openslr.org/12/",
+      "modifications": "Unmodified source OGG excerpt",
+      "sha256": "0473ba9613befa1026db5e254546f105aeffba8366b5468fc5e8d474d844ca1d"
+    }
+  ]
+}

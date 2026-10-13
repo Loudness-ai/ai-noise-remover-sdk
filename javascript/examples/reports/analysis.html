@@ -1,0 +1,328 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'"><title>Loudness.ai Audio Audit report</title><style>*{box-sizing:border-box}body{margin:0;overflow-wrap:anywhere;background:#ffffff;color:#000000;font:16px/1.6 sans-serif}header{background:#000000;color:#ffffff;padding:28px max(20px,calc((100vw - 1080px)/2))}header a{color:#ff4b1f}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:800}.brand svg{width:42px;height:42px}main{max-width:1120px;margin:auto;padding:24px}h1{font-size:clamp(26px,4vw,38px);margin:12px 0}h2{font-size:24px}h3{font-size:18px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metrics div{background:#f4f4f4;border-radius:12px;padding:14px}.metrics span{display:block;font-size:14px}output{font:600 20px/1.5 monospace}.chart{width:100%;height:140px;background:#fafafa;border-radius:12px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:left}td,th{padding:12px;border-bottom:1px solid #dddddd}section{margin:0 0 36px}li{margin:8px 0}.help{font-size:14px}pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}details{background:#f4f4f4;border-radius:12px;padding:16px}footer{padding:24px;border-top:1px solid #dddddd}footer a{color:#000000}@media(max-width:600px){main{padding:16px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}output{font-size:17px}td,th{padding:8px}}@media print{header{background:#ffffff;color:#000000}.chart{break-inside:avoid}details{display:none}}</style></head><body><header><div class="brand"><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="7" fill="#000000"/><g stroke="#ff4b1f" stroke-width="1.8" stroke-linecap="round"><line x1="6.5" x2="6.5" y1="11.5" y2="14.5"/><line x1="9.75" x2="9.75" y1="8.5" y2="17.5"/><line x1="13" x2="13" y1="6" y2="20"/><line x1="16.25" x2="16.25" y1="9.5" y2="16.5"/><line x1="19.5" x2="19.5" y1="11" y2="15"/></g></svg><svg viewBox="0 0 4653 681" role="img" aria-label="Loudness.ai" style="width:190px;height:32px"><g transform="translate(0 670) scale(1 -1)"><path d="M193 0H50V670H193Z" transform="translate(0 0)" fill="#ffffff"/><path d="M270 -10Q159 -10 92.0 61.0Q25 132 25.0 245.0Q25 358 92.0 429.0Q159 500 270 500Q384 500 452.0 429.0Q520 358 520 245Q520 131 452.0 60.5Q384 -10 270 -10ZM272 106Q375 106 375.0 245.0Q375 384 272 384Q170 384 170.0 245.0Q170 106 272 106Z" transform="translate(214 0)" fill="#ffffff"/><path d="M198 -10Q128 -10 87.5 31.5Q47 73 47 148V490H190V198Q190 149 207.5 125.0Q225 101 272 101Q322 101 341.5 129.0Q361 157 361 219V490H504V0H361V137Q347 72 307.0 31.0Q267 -10 198 -10Z" transform="translate(735 0)" fill="#ffffff"/><path d="M218 -11Q128 -11 76.0 56.5Q24 124 24 245Q24 365 75.0 432.5Q126 500 212 500Q341 500 368 350V670H511V0H368V138Q357 70 322.5 29.5Q288 -11 218 -11ZM275 101Q368 101 368 218V271Q368 389 273 389Q225 389 197.0 351.5Q169 314 169.0 245.0Q169 176 197.0 138.5Q225 101 275 101Z" transform="translate(1260 0)" fill="#ffffff"/><path d="M193 0H50V490H193V348Q206 415 246.0 457.5Q286 500 357 500Q427 500 467.0 458.5Q507 417 507 342V0H364V292Q364 341 346.5 365.0Q329 389 283 389Q233 389 213.0 361.0Q193 333 193 271Z" transform="translate(1791 0)" fill="#ffffff"/><path d="M279 -10Q163 -10 95.5 60.0Q28 130 28 245Q28 359 93.5 429.5Q159 500 267 500Q379 500 440.0 434.5Q501 369 501 268Q501 226 496 208H162Q169 158 200.5 132.0Q232 106 281 106Q374 106 405 178L492 91Q421 -10 279 -10ZM268 390Q173 390 162 290H372Q364 390 268 390Z" transform="translate(2316 0)" fill="#ffffff"/><path d="M268 -10Q187 -10 119.5 17.0Q52 44 20 89L86 186Q120 150 170.0 124.5Q220 99 272 99Q334 99 334 137Q334 155 315.5 165.0Q297 175 254 186L188 202Q114 221 75.0 253.5Q36 286 36 346Q36 417 89.5 458.0Q143 499 234 499Q308 499 365.0 472.5Q422 446 451 410L387 314Q313 391 222 391Q166 391 166 354Q166 335 183.5 324.5Q201 314 252 300L307 285Q389 263 425.5 229.0Q462 195 462 139Q462 69 408.5 29.5Q355 -10 268 -10Z" transform="translate(2821 0)" fill="#ffffff"/><path d="M268 -10Q187 -10 119.5 17.0Q52 44 20 89L86 186Q120 150 170.0 124.5Q220 99 272 99Q334 99 334 137Q334 155 315.5 165.0Q297 175 254 186L188 202Q114 221 75.0 253.5Q36 286 36 346Q36 417 89.5 458.0Q143 499 234 499Q308 499 365.0 472.5Q422 446 451 410L387 314Q313 391 222 391Q166 391 166 354Q166 335 183.5 324.5Q201 314 252 300L307 285Q389 263 425.5 229.0Q462 195 462 139Q462 69 408.5 29.5Q355 -10 268 -10Z" transform="translate(3276 0)" fill="#ffffff"/><path d="M186 0H34V155H186Z" transform="translate(3731 0)" fill="#ff4b1f"/><path d="M156 -11Q97 -11 62.0 20.0Q27 51 27 109Q27 163 61.0 198.0Q95 233 167 258L317 314Q313 346 295.5 362.0Q278 378 239 378Q194 378 153.0 355.0Q112 332 86 294L14 398Q108 500 249 500Q343 500 394.0 451.5Q445 403 445 311V143Q445 114 471 114H500V0H416Q372 0 343.5 22.5Q315 45 315 94V127Q301 69 262.5 29.0Q224 -11 156 -11ZM159 130Q159 94 209 94Q260 94 287.5 118.5Q315 143 315 188V222L211 179Q159 158 159 130Z" transform="translate(3921 0)" fill="#ff4b1f"/><path d="M193 548H50V670H193ZM193 0H50V490H193Z" transform="translate(4409 0)" fill="#ff4b1f"/></g></svg></div><h1>Audio Audit report</h1><p>Measurements, delivery checks and processing comparisons.</p></header><main><section><h2>sample.wav</h2><p>pcm_f32le · 1 channels · 48000 Hz · measured</p><div class="metrics"><div><span>Duration</span><output>2.00 s</output></div><div><span>Integrated loudness</span><output>-23.00 LUFS</output></div><div><span>True peak</span><output>-20.00 dBTP</output></div><div><span>RMS</span><output>-23.01 dBFS</output></div><div><span>Loudness range</span><output>Unavailable</output></div><div><span>Silence</span><output>0.00 s</output></div></div><h3>Waveform</h3><svg viewBox="0 0 1000 120" role="img" aria-label="Full recording peak envelope" class="chart"><line x1="0" y1="60" x2="1000" y2="60" stroke="#dddddd"/><g fill="#ff4b1f"><rect x="0" y="54.49999991804361" width="50" height="11.000000163912773"/><rect x="50" y="54.49999991804361" width="50" height="11.000000163912773"/><rect x="100" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="150" y="54.49999991804361" width="50.000000000000014" height="11.000000163912773"/><rect x="200" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="250" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="300" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="350" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="400" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="450" y="54.49999991804361" width="49.999999999999986" height="11.000000163912773"/><rect x="500" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="550" y="54.49999991804361" width="49.999999999999936" height="11.000000163912773"/><rect x="600" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="650" y="54.49999991804361" width="49.999999999999936" height="11.000000163912773"/><rect x="700" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="750" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="800" y="54.49999991804361" width="49.999999999999936" height="11.000000163912773"/><rect x="850" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/><rect x="900" y="54.49999991804361" width="49.999999999999936" height="11.000000163912773"/><rect x="950" y="54.49999991804361" width="50.00000000000004" height="11.000000163912773"/></g></svg><h3>Momentary loudness</h3><svg viewBox="0 0 1000 120" role="img" aria-label="Momentary loudness timeline" class="chart"><polyline points="199.99991666666668,36 249.99991666666668,36 299.9999166666667,36 349.9999166666667,36 399.99991666666665,36 449.99991666666665,36 499.99991666666665,36 549.9999166666666,36 599.9999166666666,36 649.9999166666666,36 699.9999166666668,36 749.9999166666666,36 799.9999166666666,36 849.9999166666666,36 899.9999166666666,36 949.9999166666668,36 999.9999166666666,36" fill="none" stroke="#000000" stroke-width="2"/></svg><div class="table-wrap"><table><thead><tr><th>Channel</th><th>Sample peak</th><th>RMS</th><th>DC offset</th><th>Near full scale</th></tr></thead><tbody><tr><td>1</td><td>-20.00 dBFS</td><td>-23.01 dBFS</td><td>-3.932e-19</td><td>0</td></tr></tbody></table></div><p class="help">Loudness range requires at least 10 seconds. Waveform bins cover the full recording; event lists may be capped. Near-full-scale samples and sample jumps are candidates for inspection, not a listening-quality verdict.</p></section><details><summary>Complete structured results</summary><pre>{
+  &quot;schemaVersion&quot;: 1,
+  &quot;kind&quot;: &quot;analysis&quot;,
+  &quot;input&quot;: {
+    &quot;schemaVersion&quot;: 1,
+    &quot;kind&quot;: &quot;inspection&quot;,
+    &quot;file&quot;: {
+      &quot;name&quot;: &quot;sample.wav&quot;,
+      &quot;sizeBytes&quot;: 384044,
+      &quot;container&quot;: &quot;wav&quot;
+    },
+    &quot;streams&quot;: [
+      {
+        &quot;index&quot;: 0,
+        &quot;codec&quot;: &quot;pcm_f32le&quot;,
+        &quot;sampleRate&quot;: 48000,
+        &quot;channels&quot;: 1,
+        &quot;channelLayout&quot;: null,
+        &quot;declaredDurationSeconds&quot;: 2,
+        &quot;language&quot;: null
+      }
+    ],
+    &quot;selectedStream&quot;: {
+      &quot;index&quot;: 0,
+      &quot;codec&quot;: &quot;pcm_f32le&quot;,
+      &quot;sampleRate&quot;: 48000,
+      &quot;channels&quot;: 1,
+      &quot;channelLayout&quot;: null,
+      &quot;declaredDurationSeconds&quot;: 2,
+      &quot;language&quot;: null
+    },
+    &quot;declaredDurationSeconds&quot;: 2
+  },
+  &quot;durationSeconds&quot;: 2,
+  &quot;frames&quot;: 96000,
+  &quot;decodedPcmSha256&quot;: &quot;973ee2b80aba795831a6cf71772bfe381cd34514ec3e5e92ba94ce242874c850&quot;,
+  &quot;state&quot;: &quot;measured&quot;,
+  &quot;integratedLufs&quot;: -23,
+  &quot;truePeakDbtp&quot;: -20,
+  &quot;loudnessRangeLu&quot;: null,
+  &quot;samplePeakDbfs&quot;: -19.99999987057016,
+  &quot;rmsDbfs&quot;: -23.010299939329553,
+  &quot;channels&quot;: [
+    {
+      &quot;samplePeakDbfs&quot;: -19.99999987057016,
+      &quot;rmsDbfs&quot;: -23.010299939329553,
+      &quot;crestFactorDb&quot;: 3.010300068759392,
+      &quot;dcOffset&quot;: -3.9320398788807625e-19,
+      &quot;nearFullScaleSamples&quot;: 0,
+      &quot;longestNearFullScaleRun&quot;: 0
+    }
+  ],
+  &quot;stereoCorrelation&quot;: null,
+  &quot;channelImbalanceDb&quot;: null,
+  &quot;silence&quot;: {
+    &quot;thresholdDbfs&quot;: -60,
+    &quot;minSeconds&quot;: 0.2,
+    &quot;totalSeconds&quot;: 0,
+    &quot;leadingSeconds&quot;: 0,
+    &quot;trailingSeconds&quot;: 0,
+    &quot;intervals&quot;: [],
+    &quot;totalIntervals&quot;: 0
+  },
+  &quot;discontinuities&quot;: {
+    &quot;threshold&quot;: 0.8,
+    &quot;totalCandidates&quot;: 0,
+    &quot;candidates&quot;: []
+  },
+  &quot;bandEnergy&quot;: {
+    &quot;method&quot;: &quot;one-pole-crossover&quot;,
+    &quot;lowDbfs&quot;: -37.152177645090624,
+    &quot;midDbfs&quot;: -25.063823570022507,
+    &quot;highDbfs&quot;: -31.162242052076063
+  },
+  &quot;waveform&quot;: [
+    {
+      &quot;startSeconds&quot;: 0,
+      &quot;endSeconds&quot;: 0.1,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.1,
+      &quot;endSeconds&quot;: 0.2,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.2,
+      &quot;endSeconds&quot;: 0.3,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.3,
+      &quot;endSeconds&quot;: 0.4,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.4,
+      &quot;endSeconds&quot;: 0.5,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.5,
+      &quot;endSeconds&quot;: 0.6,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.6,
+      &quot;endSeconds&quot;: 0.7,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.7,
+      &quot;endSeconds&quot;: 0.8,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.8,
+      &quot;endSeconds&quot;: 0.9,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 0.9,
+      &quot;endSeconds&quot;: 1,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1,
+      &quot;endSeconds&quot;: 1.1,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.1,
+      &quot;endSeconds&quot;: 1.2,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.2,
+      &quot;endSeconds&quot;: 1.3,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.3,
+      &quot;endSeconds&quot;: 1.4,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.4,
+      &quot;endSeconds&quot;: 1.5,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.5,
+      &quot;endSeconds&quot;: 1.6,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.6,
+      &quot;endSeconds&quot;: 1.7,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.7,
+      &quot;endSeconds&quot;: 1.8,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.8,
+      &quot;endSeconds&quot;: 1.9,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    },
+    {
+      &quot;startSeconds&quot;: 1.9,
+      &quot;endSeconds&quot;: 2,
+      &quot;min&quot;: -0.10000000149011612,
+      &quot;max&quot;: 0.10000000149011612,
+      &quot;rms&quot;: 0.07071067825957048
+    }
+  ],
+  &quot;loudnessTimeline&quot;: [
+    {
+      &quot;timeSeconds&quot;: 0.10000003333333334,
+      &quot;momentaryLufs&quot;: null,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.19999983333333332,
+      &quot;momentaryLufs&quot;: null,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.29999983333333335,
+      &quot;momentaryLufs&quot;: null,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.39999983333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.49999983333333337,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.5999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.6999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.7999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.8999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 0.9999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.0999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.1999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.2999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.3999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.4999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.5999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.6999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.7999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.8999998333333334,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    },
+    {
+      &quot;timeSeconds&quot;: 1.9999998333333333,
+      &quot;momentaryLufs&quot;: -23,
+      &quot;shortTermLufs&quot;: null
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;waveformBinSeconds&quot;: 0.10000000000000009,
+    &quot;loudnessStride&quot;: 1,
+    &quot;eventsCapped&quot;: false
+  },
+  &quot;settings&quot;: {
+    &quot;clippingThreshold&quot;: 0.999,
+    &quot;nativeThreads&quot;: 1
+  }
+}</pre></details></main><footer>Created with <a href="https://loudness.ai/">Loudness.ai Audio Audit</a>. Audio remains on the system running the toolkit.</footer></body></html>

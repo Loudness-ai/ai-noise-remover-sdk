@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "name": "Speech delivery example",
+  "unavailable": "warning",
+  "rules": [
+    {"metric": "integrated_lufs", "min": -20, "max": -14},
+    {"metric": "true_peak_dbtp", "max": -1},
+    {"metric": "near_full_scale_samples", "max": 0},
+    {"metric": "max_abs_dc_offset", "max": 0.01, "severity": "warning"}
+  ]
+}

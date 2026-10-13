@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Inspection",
+  "$ref": "#/$defs/Inspection",
+  "$defs": {
+    "Inspection": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 1,
+          "type": "number"
+        },
+        "kind": {
+          "const": "inspection",
+          "type": "string"
+        },
+        "file": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "sizeBytes": {
+              "type": "number"
+            },
+            "container": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "sizeBytes",
+            "container"
+          ],
+          "additionalProperties": false
+        },
+        "streams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AudioStream"
+          }
+        },
+        "selectedStream": {
+          "$ref": "#/$defs/AudioStream"
+        },
+        "declaredDurationSeconds": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "kind",
+        "file",
+        "streams",
+        "selectedStream",
+        "declaredDurationSeconds"
+      ],
+      "additionalProperties": false
+    },
+    "AudioStream": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "number"
+        },
+        "codec": {
+          "type": "string"
+        },
+        "sampleRate": {
+          "type": "number"
+        },
+        "channels": {
+          "type": "number"
+        },
+        "channelLayout": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "declaredDurationSeconds": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "index",
+        "codec",
+        "sampleRate",
+        "channels",
+        "channelLayout",
+        "declaredDurationSeconds",
+        "language"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

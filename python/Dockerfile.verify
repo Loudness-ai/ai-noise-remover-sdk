@@ -1,0 +1,13 @@
+ARG PYTHON_VERSION=3.12
+FROM python:${PYTHON_VERSION}-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
+WORKDIR /kit
+COPY dist/*.whl /wheels/
+RUN pip install --no-cache-dir /wheels/*.whl pytest
+COPY tests /kit/tests
+COPY examples /kit/examples
+COPY scripts/installed_consumer.py /kit/installed_consumer.py
+COPY scripts/disk_full_check.py /kit/disk_full_check.py
+RUN useradd --create-home kit && chown -R kit:kit /kit
+USER kit
+CMD ["python", "-m", "pytest", "-q", "tests", "--junitxml=/kit/tests.xml"]
