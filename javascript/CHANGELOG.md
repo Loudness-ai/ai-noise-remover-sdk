@@ -1,5 +1,11 @@
 # Changelog
 
+## Initial release corrections — 2026-10-13
+
+- Preserve staged output bytes while opening a writable handle for Windows file synchronization before atomic publication.
+- Emit the first processed-frame progress event even when a short recording finishes inside the update interval, allowing progress-triggered cancellation on fast hosts.
+- Add a one-sample cancellation regression for denoising and conversion that verifies existing destinations and scratch cleanup.
+
 ## Public release preparation — 2026-10-13
 
 - Add component-aware distribution metadata, pinned upstream code license texts and a public release review.

@@ -536,7 +536,8 @@ export async function processAudio(
         "The source recording changed during processing.",
       );
     aborted(signal);
-    const sync = await open(staged, "r");
+    // Windows FlushFileBuffers requires write access; r+ preserves the staged bytes.
+    const sync = await open(staged, "r+");
     try {
       await sync.sync();
     } finally {

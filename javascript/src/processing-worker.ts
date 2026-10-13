@@ -104,7 +104,9 @@ async function main(config: Configuration): Promise<void> {
     decodedFrames = 0,
     writtenFrames = 0;
   const delayedDry: { samples: Float32Array[]; count: number }[] = [];
-  let lastProgress = 0;
+  // Always report the first processed frame, even if the entire clip finishes
+  // within the 250 ms update interval on a fast host.
+  let lastProgress = Number.NEGATIVE_INFINITY;
   const blockBytes = FRAME_SIZE * config.channels * 4;
   try {
     handle = await open(config.output, "wx", 0o600);

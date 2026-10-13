@@ -2,10 +2,13 @@
 
 Local speech noise removal, audio enhancement, loudness normalization and audio measurement for **Python, JavaScript and TypeScript**. Built by [Loudness.ai](https://loudness.ai/).
 
-Audio is processed on the computer or server running the kit. No Loudness.ai account, API key or hosted inference service is required. Both editions include the same pinned CPU speech engine and produce complete audio files through their SDK and command-line interface.
+**Runs locally on CPU. No GPU or CUDA installation is required.** Audio stays on the computer or server running the kit. No Loudness.ai account, API key or hosted inference service is required. Both editions include the same pinned speech engine and produce complete audio files through their SDK and command-line interface.
 
 [![Verify Audio Kit](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml)
-[![Python package](https://img.shields.io/pypi/v/loudness-audio-kit)](https://pypi.org/project/loudness-audio-kit/)
+[![PyPI version](https://img.shields.io/pypi/v/loudness-audio-kit?label=PyPI)](https://pypi.org/project/loudness-audio-kit/)
+[![Python versions](https://img.shields.io/pypi/pyversions/loudness-audio-kit)](https://pypi.org/project/loudness-audio-kit/)
+[![Node.js versions](https://img.shields.io/badge/Node.js-22%20%7C%2024-339933?logo=nodedotjs&logoColor=white)](javascript/package.json)
+[![Code license: MIT](https://img.shields.io/badge/Code%20license-MIT-blue)](LICENSE)
 
 ## What it does
 
@@ -20,6 +23,15 @@ Audio is processed on the computer or server running the kit. No Loudness.ai acc
 | Batch and schedule | Process ordered jobs with configurable concurrency, memory reservations and queue limits. |
 
 The speech engine is designed for voice recordings. It can suppress intentional music and is not a stem separator or music mastering processor. Measurements and same-engine parity checks do not prove universal perceptual superiority.
+
+## Choose an edition
+
+| Edition | Runtime | Install and documentation |
+| --- | --- | --- |
+| Python | Python 3.11–3.14; FFmpeg/FFprobe | [Official PyPI project](https://pypi.org/project/loudness-audio-kit/) · [Python guide](python/README.md) |
+| JavaScript / TypeScript | Node.js 22 or 24; FFmpeg/FFprobe | Build from this repository · [JavaScript guide](javascript/README.md) |
+
+Both editions use CPU inference and include their processing assets. Python runs natively without Node.js; the JavaScript edition runs without Python.
 
 ## Use Python
 
@@ -93,6 +105,12 @@ npm run demo
 
 Open `http://127.0.0.1:7860/` to upload, process, preview and download audio locally. The demo defaults to 25 MiB and five minutes per file; its admission and resource limits are configurable. A non-root Docker setup is included in [the demo guide](javascript/demo/README.md).
 
+```sh
+# From javascript/
+docker build -f demo/Dockerfile -t loudness-audio-kit .
+docker run --rm -p 7860:7860 loudness-audio-kit
+```
+
 ## Verification and contributing
 
 Tests exercise actual speech inference, export, full recording tails, independent channels, normalization, cancellation, resource limits and failures. See the dated [JavaScript verification ledger](javascript/docs/verification.md) and [Python verification ledger](python/docs/verification.md) for executed platforms and the limits of the evidence. GitHub Actions results are available through the badge above.
@@ -101,7 +119,7 @@ Tests exercise actual speech inference, export, full recording tails, independen
 
 ## License and attribution
 
-Loudness.ai wrapper code is MIT. Bundled model assets, native dependencies and credited recordings retain their separate component terms. Read [distribution terms](DISTRIBUTION-LICENSE), each edition's notices and provenance records before redistribution. Original upstream license texts are included in both editions.
+Loudness.ai’s SDK, CLI, scheduling, reports and demo code is MIT. Bundled model assets, native dependencies and credited recordings retain their separate component terms. Read [distribution terms](DISTRIBUTION-LICENSE), each edition's notices and provenance records before redistribution. Original upstream license texts are included in both editions.
 
 Credit is welcome and optional:
 

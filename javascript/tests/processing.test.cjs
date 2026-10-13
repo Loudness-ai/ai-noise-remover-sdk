@@ -154,8 +154,41 @@ test("abort during initialization, inference, normalization and export publishes
         },
       }),
       { code: "CANCELLED" },
+      `Cancellation during ${phase} must reject before publication`,
     );
     assert.equal(await fs.stat(target).catch(() => null), null);
+    await clean();
+  }
+});
+test("sub-frame processing reports its phase and cancellation preserves existing output", async () => {
+  const short = await writeWav(output("short-cancel.wav"), { frames: 1 });
+  for (const [method, phase] of [
+    ["denoise", "denoise"],
+    ["convert", "decode"],
+  ]) {
+    const target = output(`short-cancel-${method}-out.wav`);
+    const original = Buffer.from(
+      "existing destination must survive cancellation",
+    );
+    await fs.writeFile(target, original);
+    const controller = new AbortController();
+    let observed = false;
+    await assert.rejects(
+      kit[method](short, target, {
+        overwrite: true,
+        signal: controller.signal,
+        tempDirectory: dir,
+        onProgress: (p) => {
+          if (p.phase === phase) {
+            observed = true;
+            controller.abort();
+          }
+        },
+      }),
+      { code: "CANCELLED" },
+    );
+    assert.equal(observed, true);
+    assert.deepEqual(await fs.readFile(target), original);
     await clean();
   }
 });
