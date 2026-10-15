@@ -24,9 +24,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://loudness.ai/"
-Repository = "https://github.com/secretheart49/loudness-audio-kit"
-Issues = "https://github.com/secretheart49/loudness-audio-kit/issues"
+Homepage = "https://loudness.ai/developers/ai-noise-remover-sdk/"
+Documentation = "https://loudness.ai/developers/guides/install-ai-noise-remover-sdk/"
+"Browser demo" = "https://huggingface.co/spaces/Loudness-ai/ai-noise-remover-loudness-normalizer"
+Repository = "https://github.com/Loudness-ai/ai-noise-remover-sdk"
+Issues = "https://github.com/Loudness-ai/ai-noise-remover-sdk/issues"
 
 [project.scripts]
 loudness-audio = "loudness_audio_kit.cli:main"

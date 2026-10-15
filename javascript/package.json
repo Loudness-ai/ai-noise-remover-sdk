@@ -103,7 +103,7 @@
   "dependencies": {
     "onnxruntime-node": "1.30.0"
   },
-  "homepage": "https://loudness.ai/",
+  "homepage": "https://loudness.ai/developers/ai-noise-remover-sdk/",
   "author": {
     "name": "Loudness.ai",
     "url": "https://loudness.ai/"
@@ -124,10 +124,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/secretheart49/loudness-audio-kit.git",
+    "url": "git+https://github.com/Loudness-ai/ai-noise-remover-sdk.git",
     "directory": "javascript"
   },
   "bugs": {
-    "url": "https://github.com/secretheart49/loudness-audio-kit/issues"
+    "url": "https://github.com/Loudness-ai/ai-noise-remover-sdk/issues"
   }
 }

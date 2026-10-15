@@ -1,6 +1,6 @@
-# Loudness.ai Audio Kit for Python
+# AI Noise Remover SDK for Python
 
-Remove noise, enhance speech, normalize loudness, convert audio and measure the result locally. This is a native Python SDK and command-line tool built from the existing Loudness.ai Audio Kit. Audio stays on the computer or server running it. Processing requires neither Node.js nor an API key nor a Loudness.ai server.
+Remove noise, enhance speech, normalize loudness, convert audio and measure the result locally. This is the native Python edition of the AI Noise Remover SDK (formerly the Loudness.ai Audio Kit; the package keeps the name `loudness-audio-kit`). Website, installation guide and browser demo: [loudness.ai/developers/ai-noise-remover-sdk](https://loudness.ai/developers/ai-noise-remover-sdk/). Audio stays on the computer or server running it. Processing requires neither Node.js nor an API key nor a Loudness.ai server.
 
 **Runs locally on CPU. No GPU, CUDA installation or Node.js is required.** The package includes the same pinned speech engine as the JavaScript edition. It processes the complete recording in small frames, preserves channel independence and verifies the exported file before publishing it. It also includes bounded scheduling, cancellation cleanup, configurable resource limits, measurements, policy checks, comparisons and offline reports.
 

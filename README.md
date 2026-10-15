@@ -1,10 +1,12 @@
-# Loudness.ai Audio Kit
+# AI Noise Remover SDK
 
-Local speech noise removal, audio enhancement, loudness normalization and audio measurement for **Python, JavaScript and TypeScript**. Built by [Loudness.ai](https://loudness.ai/).
+Remove background noise from voice recordings with a local AI speech model, then enhance speech, normalize loudness and measure audio, from **Python, JavaScript and TypeScript**. Built by [Loudness.ai](https://loudness.ai/developers/ai-noise-remover-sdk/); formerly named the Loudness.ai Audio Kit, and still installed with `pip install loudness-audio-kit`.
+
+**[Website and docs](https://loudness.ai/developers/ai-noise-remover-sdk/)** · **[Installation guide](https://loudness.ai/developers/guides/install-ai-noise-remover-sdk/)** · **[Try it in your browser](https://huggingface.co/spaces/Loudness-ai/ai-noise-remover-loudness-normalizer)** · [PyPI](https://pypi.org/project/loudness-audio-kit/) · [More SDKs and guides](https://loudness.ai/developers/)
 
 **Runs locally on CPU. No GPU or CUDA installation is required.** Audio stays on the computer or server running the kit. No Loudness.ai account, API key or hosted inference service is required. Both editions include the same pinned speech engine and produce complete audio files through their SDK and command-line interface.
 
-[![Verify Audio Kit](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/secretheart49/loudness-audio-kit/actions/workflows/ci.yml)
+[![Verify AI Noise Remover SDK](https://github.com/Loudness-ai/ai-noise-remover-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/Loudness-ai/ai-noise-remover-sdk/actions/workflows/ci.yml)
 [![PyPI version](https://img.shields.io/pypi/v/loudness-audio-kit?label=PyPI)](https://pypi.org/project/loudness-audio-kit/)
 [![Python versions](https://img.shields.io/pypi/pyversions/loudness-audio-kit)](https://pypi.org/project/loudness-audio-kit/)
 [![Node.js versions](https://img.shields.io/badge/Node.js-22%20%7C%2024-339933?logo=nodedotjs&logoColor=white)](javascript/package.json)
@@ -61,8 +63,8 @@ enhance("podcast.mp3", "enhanced.wav", target_lufs=-16)
 Requires Node.js 22 or 24 and FFmpeg/FFprobe.
 
 ```sh
-git clone https://github.com/secretheart49/loudness-audio-kit.git
-cd loudness-audio-kit/javascript
+git clone https://github.com/Loudness-ai/ai-noise-remover-sdk.git
+cd ai-noise-remover-sdk/javascript
 npm ci --ignore-scripts
 npm run build
 node dist/cjs/cli.js processing-doctor
@@ -107,8 +109,8 @@ Open `http://127.0.0.1:7860/` to upload, process, preview and download audio loc
 
 ```sh
 # From javascript/
-docker build -f demo/Dockerfile -t loudness-audio-kit .
-docker run --rm -p 7860:7860 loudness-audio-kit
+docker build -f demo/Dockerfile -t ai-noise-remover-sdk .
+docker run --rm -p 7860:7860 ai-noise-remover-sdk
 ```
 
 ## Verification and contributing
@@ -117,12 +119,19 @@ Tests exercise actual speech inference, export, full recording tails, independen
 
 [Contributing](CONTRIBUTING.md) · [Security reporting](SECURITY.md)
 
+## More from Loudness.ai
+
+- [loudness-tts](https://github.com/Loudness-ai/loudness-tts): free, local text to speech for Python and JavaScript ([website](https://loudness.ai/developers/loudness-tts/))
+- [Developer guides](https://loudness.ai/developers/guides/) and the [developer hub](https://loudness.ai/developers/)
+- [Free online audio tools](https://loudness.ai/tools/): [Audio Enhancer](https://loudness.ai/tools/audio-enhancer/), [Echo Remover](https://loudness.ai/tools/echo-remover/), [Audio Normalizer](https://loudness.ai/tools/audio-normalizer/)
+- [Research & Benchmarks](https://loudness.ai/research/) · [Hugging Face](https://huggingface.co/Loudness-ai)
+
 ## License and attribution
 
 Loudness.ai’s SDK, CLI, scheduling, reports and demo code is MIT. Bundled model assets, native dependencies and credited recordings retain their separate component terms. Read [distribution terms](DISTRIBUTION-LICENSE), each edition's notices and provenance records before redistribution. Original upstream license texts are included in both editions.
 
 Credit is welcome and optional:
 
-> Audio processing powered by [Loudness.ai Audio Kit](https://loudness.ai/).
+> Audio processing powered by [AI Noise Remover SDK by Loudness.ai](https://loudness.ai/developers/ai-noise-remover-sdk/).
 
 Attribution or a website link is not an additional condition of the MIT code license.
