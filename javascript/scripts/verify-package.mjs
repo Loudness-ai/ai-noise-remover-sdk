@@ -9,7 +9,8 @@ const expectedPackage = JSON.parse(await readFile("package.json", "utf8"));
 const publicReadme = await readFile("README.md", "utf8");
 if (
   expectedPackage.name !== "loudness-audio-kit" ||
-  expectedPackage.homepage !== "https://loudness.ai/" ||
+  expectedPackage.homepage !==
+    "https://loudness.ai/developers/ai-noise-remover-sdk/" ||
   !publicReadme.includes("npm install loudness-audio-kit") ||
   /\]\((?!https?:\/\/|#)[^)]+\)/.test(publicReadme)
 )
